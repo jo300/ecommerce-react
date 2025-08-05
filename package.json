@@ -2,6 +2,8 @@
   "name": "react-pos",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "jo <jomonkuzhimyalil@gmail.com>",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
