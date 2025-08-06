@@ -1,0 +1,84 @@
+/* Navbar Overlay */
+.navbar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Above carousel */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  padding: 15px 0;
+  transition: background 0.3s ease;
+}
+
+.navbar-overlay:hover {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Nav Items */
+.nav-item {
+  position: relative;
+  margin: 0 15px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Submenu */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  min-width: 200px;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+  animation: fadeIn 0.3s;
+}
+
+.submenu-link {
+  display: block;
+  padding: 12px 20px;
+  color: #ddd;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.submenu-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding-left: 25px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -89,7 +89,9 @@ const CartItem = ({ item, handleRemove, handleAdd }) => (
       <img src={item.image} alt={item.name} />
     </div>
     <div className="item-details">
-      <h3 className="item-name">{item.name}</h3>
+      <h3 className="item-name">
+        {item.description.substring(0, item.description.lastIndexOf(" ", 23))}
+      </h3>
       <p className="item-price">${item.price.toFixed(2)}</p>
       <QuantityControls
         quantity={item.qty}

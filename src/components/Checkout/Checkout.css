@@ -11,6 +11,15 @@
   flex-direction: column;
   gap: 2rem;
 }
+.back-navigation {
+  font-family: sans-serif;
+  font-weight: 600;
+}
+.back-navigation:hover {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
 
 .empty-cart {
   text-align: center;

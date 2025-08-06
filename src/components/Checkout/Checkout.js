@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
-const Checkout = ({ cartItems, clearCart }) => {
+function Checkout({ cartItems, clearCart }) {
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const navigate = useNavigate();
 
+  // Calculate total price
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
@@ -16,10 +17,13 @@ const Checkout = ({ cartItems, clearCart }) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       clearCart();
-      alert(
-        `Order placed successfully!\nTotal: $${(totalPrice + 2.99).toFixed(2)}`
-      );
-      navigate("/");
+      navigate("/", {
+        state: {
+          notification: `Order placed successfully! Total: $${(
+            totalPrice + 2.99
+          ).toFixed(2)}`,
+        },
+      });
     } catch (error) {
       alert("Failed to place order. Please try again.");
     } finally {
@@ -29,6 +33,10 @@ const Checkout = ({ cartItems, clearCart }) => {
 
   return (
     <div className="checkout-container">
+      <span className="back-navigation" onClick={() => navigate("/")}>
+        {" "}
+        Home
+      </span>
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <p>Your cart is empty</p>
@@ -44,7 +52,13 @@ const Checkout = ({ cartItems, clearCart }) => {
                   className="checkout-item-image"
                 />
                 <div className="checkout-item-details">
-                  <h3>{item.name}</h3>
+                  <h3>
+                    {" "}
+                    {item.description.substring(
+                      0,
+                      item.description.lastIndexOf(" ", 23)
+                    )}
+                  </h3>
                   <p>Quantity: {item.qty}</p>
                   <p>Price: ${(item.price * item.qty).toFixed(2)}</p>
                 </div>
@@ -78,6 +92,6 @@ const Checkout = ({ cartItems, clearCart }) => {
       )}
     </div>
   );
-};
+}
 
 export default Checkout;
