@@ -6,10 +6,8 @@ const BannerCarousel = ({ images }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000); // Change slide every 3 seconds
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -24,17 +22,25 @@ const BannerCarousel = ({ images }) => {
           <img src={image.url} alt={image.alt} className="carousel-image" />
         </div>
       ))}
-      <div className="carousel-dots">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentIndex ? "active" : ""}`}
-            onClick={() => setCurrentIndex(index)}
-          ></span>
-        ))}
-      </div>
+      <CarouselDots
+        count={images.length}
+        activeIndex={currentIndex}
+        onDotClick={setCurrentIndex}
+      />
     </div>
   );
 };
+
+const CarouselDots = ({ count, activeIndex, onDotClick }) => (
+  <div className="carousel-dots">
+    {Array.from({ length: count }).map((_, index) => (
+      <span
+        key={index}
+        className={`dot ${index === activeIndex ? "active" : ""}`}
+        onClick={() => onDotClick(index)}
+      />
+    ))}
+  </div>
+);
 
 export default BannerCarousel;
